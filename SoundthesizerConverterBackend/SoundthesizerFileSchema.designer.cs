@@ -20,42 +20,30 @@ namespace SoundthesizerConverterBackend.Xml
   public partial class soundset
   {
 
-    private List<soundsetSound> soundField;
-
-    private string nameField;
+    private List<soundsetSound> _sounds;
 
     private static System.Xml.Serialization.XmlSerializer serializer;
 
     public soundset()
     {
-      this.soundField = new List<soundsetSound>();
+      this._sounds = new List<soundsetSound>();
     }
 
-    [XmlArray]
-    public List<soundsetSound> sound
+    [XmlElement("sound")]
+    public List<soundsetSound> Sounds
     {
       get
       {
-        return this.soundField;
+        return this._sounds;
       }
       set
       {
-        this.soundField = value;
+        this._sounds = value;
       }
     }
 
     [XmlAttribute]
-    public string name
-    {
-      get
-      {
-        return this.nameField;
-      }
-      set
-      {
-        this.nameField = value;
-      }
-    }
+    public string name { get; set; }
 
     private static System.Xml.Serialization.XmlSerializer Serializer
     {
@@ -245,7 +233,6 @@ namespace SoundthesizerConverterBackend.Xml
 
   public partial class soundsetSound
   {
-
     private soundsetSoundFile fileField;
 
     private Dependency volumeField;
@@ -272,6 +259,7 @@ namespace SoundthesizerConverterBackend.Xml
       this.loopedField = true;
     }
 
+    [XmlElement]
     public soundsetSoundFile file
     {
       get
@@ -284,6 +272,7 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
+    [XmlElement(IsNullable = true)]
     public Dependency volume
     {
       get
@@ -296,6 +285,7 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
+    [XmlElement(IsNullable = true)]
     public Dependency pan
     {
       get
@@ -308,6 +298,7 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
+    [XmlElement(IsNullable = true)]
     public Dependency frequency
     {
       get
@@ -320,6 +311,7 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
+    [XmlElement(IsNullable = false)]
     public trigger_dependency trigger
     {
       get
@@ -332,6 +324,7 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
+    [XmlAttribute]
     public string name
     {
       get
@@ -344,7 +337,7 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
-    [System.ComponentModel.DefaultValueAttribute(true)]
+    [XmlAttribute, System.ComponentModel.DefaultValueAttribute(true)]
     public bool looped
     {
       get
@@ -550,6 +543,7 @@ namespace SoundthesizerConverterBackend.Xml
 
     private static System.Xml.Serialization.XmlSerializer serializer;
 
+    [XmlAttribute]
     public string name
     {
       get
@@ -770,6 +764,7 @@ namespace SoundthesizerConverterBackend.Xml
       this.refpointField = new List<dependencyRefpoint>();
     }
 
+    [XmlElement]
     public List<dependencyRefpoint> refpoint
     {
       get
@@ -782,6 +777,7 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
+    [XmlElement]
     public List<Dependency> dependency
     {
       get
@@ -794,6 +790,7 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
+    [XmlAttribute]
     public string value
     {
       get
@@ -806,6 +803,7 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
+    [XmlAttribute("operator")]
     public dependencyOperator @operator
     {
       get
@@ -1026,6 +1024,7 @@ namespace SoundthesizerConverterBackend.Xml
 
     private static System.Xml.Serialization.XmlSerializer serializer;
 
+    [XmlAttribute]
     public float x
     {
       get
@@ -1038,6 +1037,7 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
+    [XmlAttribute]
     public float y
     {
       get

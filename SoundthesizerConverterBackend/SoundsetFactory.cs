@@ -13,8 +13,15 @@ namespace SoundthesizerConverterBackend
       if (dep == null)
         return null;
 
+      if (dep.value == "none")
+        return null;
+
       if (dep.operatorSpecified && (dep.value != null))
         throw new SoundthesizerFileFormatException("Operator and Value must not be defined for the same Dependency.");
+
+      //Hack: As the deserializer will always create an empty object even when the respective element is absent in the source file, assume an empty dependency to be absent.
+      if (!dep.operatorSpecified && (dep.value == null) && (dep.refpoint.Count == 0) && (dep.dependency.Count == 0))
+        return null;
 
       if (!dep.operatorSpecified && (dep.value == null))
         throw new SoundthesizerFileFormatException("Either Operator or Value must be defined for a Dependency.");
@@ -64,7 +71,7 @@ namespace SoundthesizerConverterBackend
       }
       catch (SoundthesizerFileFormatException e)
       {
-        throw new SoundthesizerFileFormatException(string.Format("An error occured while converting sound '{0}'", soundProperty), e);
+        throw new SoundthesizerFileFormatException(string.Format("An error occured while converting property '{0}'", soundProperty), e);
       }
     }
 
@@ -96,7 +103,7 @@ namespace SoundthesizerConverterBackend
     {
       var soundSet = soundset.LoadFromFile(filename);
 
-      var sounds = soundSet.sound.Select(GenerateSoundFromFile).ToList().AsReadOnly();
+      var sounds = soundSet.Sounds.Select(GenerateSoundFromFile).ToList().AsReadOnly();
 
       return new SoundSet(sounds, soundSet.name);
     }
