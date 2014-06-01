@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<soundset name="BR 423">
+  <sound name="Fahren">
+    <file name="\Sounds\423_v4\423_Fahren3.wav" />
+    <volume value="VIst">
+      <refpoint x="0" y="0"/>
+      <refpoint x="5" y="1"/>
+      <refpoint x="160" y="1"/>
+    </volume>
+    <pan value="none" />
+    <frequency value="VIst">
+      <refpoint x="0" y="0" />
+      <refpoint x="160" y="1" />
+    </frequency>
+  </sound>
+
+  <sound name="Umrichterjodeln">
+    <file name="\Sounds\423_v4\423_Umrichter_jodel.wav"/>
+    <volume operator="multiply">
+      <dependency value="Zugkraft_Gesamt">
+        <refpoint x="0" y="0"/>
+        <refpoint x="72" y="0.7"/>
+      </dependency/>
+      <dependency value="VIst">
+        <refpoint x="0" y="1"/>
+        <refpoint x="25" y="1"/>
+        <refpoint x="50" y="1"/>
+        <refpoint x="53" y="0"/>
+        <refpoint x="71" y="0"/>
+      </dependency>
+    </volume>
+    <pan value="none"/>
+    <frequency value="VIst">
+      <refpoint x="10" y="1"/>
+      <refpoint x="12" y="1"/>
+      <refpoint x="15" y="1"/>
+    </frequency>
+    <trigger value="VIst" direction="up">
+      <refpoint x="0" y="0"/>
+      <refpoint x="10" y="0"/>
+      <refpoint x="10" y="1"/>
+      <refpoint x="20" y="1"/>
+    </trigger>
+  </sound>
+
+  <sound name="Umrichter_A">
+    <file name="\Sounds\423_v4\423_Umrichter_A.wav"/>
+    <volume operator="multiply">
+      <dependency value="Zugkraft_Gesamt">
+        <refpoint x="0" y="0"/>
+        <refpoint x="10" y="0"/>
+        <refpoint x="72" y="0.7"/>
+      </dependency/>
+      <dependency value="VIst">
+        <refpoint x="0" y="1"/>
+        <refpoint x="25" y="1"/>
+        <refpoint x="50" y="0"/>
+      </dependency>
+    </volume>
+    <pan value="none"/>
+    <frequency value="VIst">
+      <refpoint x="0" y="1"/>
+      <refpoint x="10" y="1"/>
+      <refpoint x="10" y="1.2"/>
+      <refpoint x="12" y="1.1"/>
+      <refpoint x="20" y="1"/>
+    </frequency>
+    <trigger value="Zugkraft_Gesamt" direction="up">
+      <refpoint x="-10" y="0"/>
+      <refpoint x="0" y="0"/>
+      <refpoint x="0" y="1"/>
+      <refpoint x="10" y="1"/>
+    </trigger>
+  </sound>
+
+  <sound name="Umrichter_C">
+    <file name="\Sounds\423_v4\423_Umrichter_C.wav"/>
+    <volume operator="multiply">
+      <dependency value="Zugkraft_Gesamt">
+        <refpoint x="-65" y="1"/>
+        <refpoint x="-10" y="1"/>
+        <refpoint x="0" y="0"/>
+      </dependency/>
+      <dependency value="VIst">
+        <refpoint x="0" y="0"
+        <refpoint x="5" y="0"/>
+        <refpoint x="10" y="0.8"/>
+        <refpoint x="20" y="0.7"/>
+        <refpoint x="30" y="0"/>
+        <refpoint x="57" y="0"/>
+        <refpoint x="60" y="0"/>
+      </dependency>
+    </volume>
+    <trigger value="Zugkraft_Gesamt" direction="up">
+        <refpoint x="-65" y="1"/>
+        <refpoint x="-1" y="1"/>
+        <refpoint x="0" y="0"/>
+        <refpoint x="10" y="0"/>
+    </trigger>
+  </sound>
+
+  <sound name="Umrichter_D">
+    <file name="\Sounds\423_v4\423_Umrichter_D.wav"/>
+    <volume operator="multiply">
+      <dependency value="Zugkraft_Gesamt">
+        <refpoint x="-65" y="1"/>
+        <refpoint x="-10" y="1"/>
+        <refpoint x="0" y="0"/>
+      </dependency>
+      <dependency value="VIst">
+        <refpoint x="0" y="0"/>
+        <refpoint x="5" y="0"/>
+        <refpoint x="10" y="0"/>
+        <refpoint x="20" y="0.9"/>
+        <refpoint x="47" y="1"/>
+        <refpoint x="50" y="0"/>
+        <refpoint x="51" y="0"/>
+      </dependency>
+    </volume>
+    <trigger value="Zugkraft_Gesamt" direction="up">
+        <refpoint x="-65" y="1"/>
+        <refpoint x="-1" y="1"/>
+        <refpoint x="0" y="0"/>
+        <refpoint x="10" y="0"/>
+    </trigger>
+  </sound>
+
+  <sound name="Anhaltebrummen">
+    <file name="\Sounds\423_v4\423_Umrichter_Anhalten.wav"/>
+    <volume operator="multiply">
+      <dependency value="Zugkraft_Gesamt">
+        <refpoint x="-65" y="1"/>
+        <refpoint x="-1" y="1"/>
+        <refpoint x="0" y="0"/>
+        <refpoint x="100" y="0"/>
+      </dependency>
+      <dependency value="VIst">
+        <refpoint x="0" y="0"/>
+        <refpoint x="1" y="1"/>
+        <refpoint x="5" y="1"/>
+        <refpoint x="6" y="0"/>
+      </dependency>
+    </volume>
+  </sound>
+
+  <sound name="Tatzlager_70">
+    <file name="\Sounds\423_v4\423_Getriebe_70kmh.wav" />
+    <volume operator="multiply">
+      <dependency value="Zugkraft_Gesamt">
+        <refpoint x="-65" y="1" />
+        <refpoint x="-10" y="1" />
+        <refpoint x="0" y="0.5" />
+        <refpoint x="10" y="1" />
+        <refpoint x="72" y="1" />
+      </dependency>
+      <dependency value="VIst">
+        <refpoint x="0" y="1"/>
+        <refpoint x="60" y="1"/>
+        <refpoint x="70" y="0.9"/>
+        <refpoint x="80" y="0"/>
+      </dependency>
+    </volume>
+    <pan value="none" />
+    <frequency value="VIst">
+      <refpoint x="-10" y="0"/>
+      <refpoint x="0" y="0" />
+      <refpoint x="75" y="1" />
+      <refpoint x="90" y="1.2"/>
+    </frequency>
+  </sound>
+
+  <sound name="Tatzlager_120">
+    <file name="\Sounds\423_v4\423_Getriebe_120kmh.wav" />
+    <volume operator="multiply">
+      <dependency value="Zugkraft_Gesamt">
+        <refpoint x="-65" y="1" />
+        <refpoint x="-10" y="1" />
+        <refpoint x="0" y="0.5" />
+        <refpoint x="10" y="1" />
+        <refpoint x="72" y="1" />
+      </dependency>
+      <dependency value="VIst">
+        <refpoint x="0" y="0"/>
+        <refpoint x="60" y="0"/>
+        <refpoint x="70" y="0.9"/>
+        <refpoint x="80" y="1"/>
+      </dependency>
+    </volume>
+    <pan value="none" />
+    <frequency value="VIst">
+      <refpoint x="-10" y="0"/>
+      <refpoint x="0" y="0" />
+      <refpoint x="100" y="1" />
+      <refpoint x="160" y="1.6" />
+    </frequency>
+  </sound>
+
+  <sound name="Anfahrquietschen_Bremse" looped="false">
+    <file name="\Sounds\423_v4\423_Bremse_Anfahren.wav"/>
+    <trigger value="VIst" direction="up">
+      <refpoint x="-10" y="0"/>
+      <refpoint x="0" y="0"/>
+      <refpoint x="0" y="1"/>
+      <refpoint x="10" y="1"/>
+    </trigger>
+  </sound>
+</soundset>

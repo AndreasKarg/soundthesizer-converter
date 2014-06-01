@@ -1,10 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="SoundthesizerFileSchema"
-    targetNamespace="http://tempuri.org/XMLSchema1.xsd"
+<schema id="SoundthesizerFileSchema"
     elementFormDefault="qualified"
-    xmlns="http://tempuri.org/XMLSchema1.xsd"
-    xmlns:mstns="http://tempuri.org/XMLSchema1.xsd"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:st="SoundthesizerFileSchema.xsd"
+    targetNamespace="SoundthesizerFileSchema.xsd"
 >
+  <complexType name="dependency">
+    <sequence>
+      <element minOccurs="0" maxOccurs="unbounded" name="refpoint">
+        <complexType>
+          <attribute name="x" type="float" use="required"/>
+          <attribute name="y" type="float" use="required"/>
+        </complexType>
+      </element>
+      <element name="dependency" type="st:dependency" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+    <attribute name="value" type="string"/>
+    <attribute name="operator">
+      <simpleType>
+        <restriction base="string">
+          <enumeration value="add"/>
+          <enumeration value="subtract"/>
+          <enumeration value="multiply"/>
+          <enumeration value="divide"/>
+          <enumeration value="modulo"/>
+        </restriction>
+      </simpleType>
+    </attribute>
+  </complexType>
+
+  <complexType name="trigger_dependency">
+    <complexContent>
+      <extension base="st:dependency">
+        <attribute name="direction" use="required">
+          <simpleType>
+            <restriction base="string">
+              <enumeration value="up"/>
+              <enumeration value="down"/>
+              <enumeration value="both"/>
+            </restriction>
+          </simpleType>
+        </attribute>
+      </extension>
+    </complexContent>
+  </complexType>
   
-</xs:schema>
+  <element name="soundset">
+    <complexType>
+      <sequence>
+        <element name="sound" minOccurs="1" maxOccurs="unbounded">
+          <complexType>
+            <all>
+              <element name="file">
+                <complexType>
+                  <attribute name="name" type="string" use="required"/>
+                </complexType>
+              </element>
+              <element name="volume" type="st:dependency" minOccurs="0" maxOccurs="1"/>
+              <element name="pan" type="st:dependency" minOccurs="0" maxOccurs="1"/>
+              <element name="frequency" type="st:dependency" minOccurs="0" maxOccurs="1"/>
+              <element name="trigger" type="st:trigger_dependency" minOccurs="0" maxOccurs="1"/>
+            </all>
+            <attribute name="name" type="string" use="required"/>
+            <attribute name="looped" type="boolean" use="optional" default="true"/>
+        </complexType>
+        </element>
+      </sequence>
+    <attribute name="name" type="string" use="required"/>
+    </complexType>
+  </element>
+</schema>
