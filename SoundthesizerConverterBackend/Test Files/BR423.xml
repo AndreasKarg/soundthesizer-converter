@@ -20,7 +20,7 @@
       <dependency value="Zugkraft_Gesamt">
         <refpoint x="0" y="0"/>
         <refpoint x="72" y="0.7"/>
-      </dependency/>
+      </dependency>
       <dependency value="VIst">
         <refpoint x="0" y="1"/>
         <refpoint x="25" y="1"/>
@@ -50,7 +50,7 @@
         <refpoint x="0" y="0"/>
         <refpoint x="10" y="0"/>
         <refpoint x="72" y="0.7"/>
-      </dependency/>
+      </dependency>
       <dependency value="VIst">
         <refpoint x="0" y="1"/>
         <refpoint x="25" y="1"/>
@@ -80,9 +80,9 @@
         <refpoint x="-65" y="1"/>
         <refpoint x="-10" y="1"/>
         <refpoint x="0" y="0"/>
-      </dependency/>
+      </dependency>
       <dependency value="VIst">
-        <refpoint x="0" y="0"
+        <refpoint x="0" y="0"/>
         <refpoint x="5" y="0"/>
         <refpoint x="10" y="0.8"/>
         <refpoint x="20" y="0.7"/>

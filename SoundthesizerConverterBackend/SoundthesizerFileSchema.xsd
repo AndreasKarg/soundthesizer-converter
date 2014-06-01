@@ -6,7 +6,7 @@
     targetNamespace="SoundthesizerFileSchema.xsd"
     xmlns:st="SoundthesizerFileSchema.xsd"
 >
-  <complexType name="dependency">
+  <complexType name="Dependency">
     <sequence>
       <element minOccurs="0" maxOccurs="unbounded" name="refpoint">
         <complexType>
@@ -14,10 +14,10 @@
           <attribute name="y" type="float" use="required"/>
         </complexType>
       </element>
-      <element name="dependency" type="st:dependency" minOccurs="0" maxOccurs="unbounded"/>
+      <element name="Dependency" type="st:Dependency" minOccurs="0" maxOccurs="unbounded"/>
     </sequence>
-    <attribute name="value" type="string"/>
-    <attribute name="operator">
+    <attribute name="value" type="string" use="optional"/>
+    <attribute name="operator" use="optional">
       <simpleType>
         <restriction base="string">
           <enumeration value="add"/>
@@ -30,9 +30,9 @@
     </attribute>
   </complexType>
 
-  <complexType name="trigger_dependency">
+  <complexType name="trigger_Dependency">
     <complexContent>
-      <extension base="st:dependency">
+      <extension base="st:Dependency">
         <attribute name="direction" use="required">
           <simpleType>
             <restriction base="string">
@@ -57,10 +57,10 @@
                   <attribute name="name" type="string" use="required"/>
                 </complexType>
               </element>
-              <element name="volume" type="st:dependency" minOccurs="0" maxOccurs="1"/>
-              <element name="pan" type="st:dependency" minOccurs="0" maxOccurs="1"/>
-              <element name="frequency" type="st:dependency" minOccurs="0" maxOccurs="1"/>
-              <element name="trigger" type="st:trigger_dependency" minOccurs="0" maxOccurs="1"/>
+              <element name="volume" type="st:Dependency" minOccurs="0" maxOccurs="1"/>
+              <element name="pan" type="st:Dependency" minOccurs="0" maxOccurs="1"/>
+              <element name="frequency" type="st:Dependency" minOccurs="0" maxOccurs="1"/>
+              <element name="trigger" type="st:trigger_Dependency" minOccurs="0" maxOccurs="1"/>
             </all>
             <attribute name="name" type="string" use="required"/>
             <attribute name="looped" type="boolean" use="optional" default="true"/>
