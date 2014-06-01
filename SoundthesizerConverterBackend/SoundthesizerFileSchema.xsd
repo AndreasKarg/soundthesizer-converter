@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <schema id="SoundthesizerFileSchema"
-    elementFormDefault="qualified"
+    elementFormDefault="unqualified"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
     xmlns="http://www.w3.org/2001/XMLSchema"
-    xmlns:st="SoundthesizerFileSchema.xsd"
     targetNamespace="SoundthesizerFileSchema.xsd"
+    xmlns:st="SoundthesizerFileSchema.xsd"
 >
   <complexType name="dependency">
     <sequence>

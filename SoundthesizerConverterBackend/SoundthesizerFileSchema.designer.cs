@@ -15,7 +15,7 @@ namespace SoundthesizerConverterBackend {
     using System.Text;
     using System.Collections.Generic;
     
-    
+    [XmlRoot]
     public partial class soundset {
         
         private List<soundsetSound> soundField;

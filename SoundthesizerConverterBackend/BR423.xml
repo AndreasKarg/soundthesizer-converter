@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
-<soundset name="BR 423"
-          xmlns ="SoundthesizerFileSchema.xsd"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="SoundthesizerFileSchema.xsd SoundthesizerFileSchema.xsd">
+<soundset
+  name="BR 423"
+  >
   <sound name="Fahren">
     <file name="\Sounds\423_v4\423_Fahren3.wav" />
     <volume value="VIst">
