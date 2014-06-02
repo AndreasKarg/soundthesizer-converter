@@ -44,6 +44,7 @@
     <Compile Include="DumbArithmeticDependency.cs" />
     <Compile Include="DumbDependencyFactory.cs" />
     <Compile Include="DumbSound.cs" />
+    <Compile Include="DumbSoundFactory.cs" />
     <Compile Include="DumbValueDependency.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Dependencies.cs" />
