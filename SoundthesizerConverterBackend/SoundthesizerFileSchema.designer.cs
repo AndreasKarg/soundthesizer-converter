@@ -752,7 +752,7 @@ namespace SoundthesizerConverterBackend.Xml
 
     private string valueField;
 
-    private dependencyOperator operatorField;
+    private Operator operatorField;
 
     private bool operatorFieldSpecified;
 
@@ -804,7 +804,7 @@ namespace SoundthesizerConverterBackend.Xml
     }
 
     [XmlAttribute("operator")]
-    public dependencyOperator @operator
+    public Operator @operator
     {
       get
       {
@@ -1236,43 +1236,11 @@ namespace SoundthesizerConverterBackend.Xml
     #endregion
   }
 
-  public enum dependencyOperator
-  {
-
-    /// <remarks/>
-    add,
-
-    /// <remarks/>
-    subtract,
-
-    /// <remarks/>
-    multiply,
-
-    /// <remarks/>
-    divide,
-
-    /// <remarks/>
-    modulo,
-  }
-
   public partial class trigger_dependency : Dependency
   {
-
-    private trigger_dependencyDirection directionField;
-
     private static System.Xml.Serialization.XmlSerializer serializer;
 
-    public trigger_dependencyDirection direction
-    {
-      get
-      {
-        return this.directionField;
-      }
-      set
-      {
-        this.directionField = value;
-      }
-    }
+    public TriggerDirection direction { get; set; }
 
     private static System.Xml.Serialization.XmlSerializer Serializer
     {
@@ -1458,18 +1426,5 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
     #endregion
-  }
-
-  public enum trigger_dependencyDirection
-  {
-
-    /// <remarks/>
-    up,
-
-    /// <remarks/>
-    down,
-
-    /// <remarks/>
-    both,
   }
 }

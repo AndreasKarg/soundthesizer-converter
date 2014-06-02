@@ -13,11 +13,11 @@ namespace SoundthesizerConverterBackend.DumbTypes
       try
       {
 
-        volume = DumbDependencyFactory.GenerateFromFile(sound.volume, "volume");
-        pan = DumbDependencyFactory.GenerateFromFile(sound.pan, "pan");
-        pitch = DumbDependencyFactory.GenerateFromFile(sound.frequency, "frequency");
+        volume = DumbDependencyFactory.Generate(sound.volume, "volume");
+        pan = DumbDependencyFactory.Generate(sound.pan, "pan");
+        pitch = DumbDependencyFactory.Generate(sound.frequency, "frequency");
 
-        trigger = DumbDependencyFactory.GenerateFromFile(sound.trigger, "trigger");
+        trigger = DumbDependencyFactory.Generate(sound.trigger, "trigger");
       }
       catch (SoundthesizerFileFormatException e)
       {

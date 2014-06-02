@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Xml.Serialization;
 
 namespace SoundthesizerConverterBackend
 {
@@ -26,11 +27,29 @@ namespace SoundthesizerConverterBackend
 
   public enum Operator
   {
-    Add, Subtract, Multiply, Divide, Modulo
+    [XmlEnum(Name = "add")]
+    Add,
+
+    [XmlEnum(Name = "subtract")]
+    Subtract,
+
+    [XmlEnum(Name = "multiply")]
+    Multiply,
+
+    [XmlEnum(Name = "divide")]
+    Divide,
+
+    [XmlEnum(Name = "modulo")]
+    Modulo
   }
 
   public enum TriggerDirection
   {
-    Up, Down, Both
+    [XmlEnum(Name = "add")]
+    Up,
+    [XmlEnum(Name = "down")]
+    Down,
+    [XmlEnum(Name = "both")]
+    Both
   }
 }

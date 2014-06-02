@@ -7,7 +7,7 @@ namespace SoundthesizerConverterBackend.DumbTypes
 {
   public static class DumbDependencyFactory
   {
-    public static IDependency GenerateFromSoundthesizer(Dependency dep)
+    public static IDependency Generate(Dependency dep)
     {
       if (dep == null)
         return null;
@@ -25,11 +25,14 @@ namespace SoundthesizerConverterBackend.DumbTypes
       if (!dep.operatorSpecified && (dep.value == null))
         throw new SoundthesizerFileFormatException("Either Operator or Value must be defined for a Dependency.");
 
-      return dep.value != null ? GenerateValueTypeFromSoundthesizer(dep) : GenerateArithmeticTypeFromSoundthesizer(dep);
+      return dep.value != null ? GenerateValueDependency(dep) : GenerateArithmeticDependency(dep);
     }
 
-    private static IDependency GenerateArithmeticTypeFromSoundthesizer(Dependency dep)
+    public static IDependency GenerateArithmeticDependency(Dependency dep)
     {
+      if(!dep.operatorSpecified)
+        throw new SoundthesizerFileFormatException("Cannot create arithmetic dependency without 'operator' attribute.");
+
       if(dep.dependency.Count == 0)
         throw new SoundthesizerFileFormatException("A Dependency with the 'operator' attribute set must contain at least one child Dependency.");
 
@@ -39,7 +42,7 @@ namespace SoundthesizerConverterBackend.DumbTypes
       {
         try
         {
-          children.Add(GenerateFromSoundthesizer(dep.dependency[i]));
+          children.Add(Generate(dep.dependency[i]));
         }
         catch (SoundthesizerFileFormatException e)
         {
@@ -47,12 +50,14 @@ namespace SoundthesizerConverterBackend.DumbTypes
         }
       }
 
-      //TODO: Actually convert the operator
-      return new DumbArithmeticDependency(children.AsReadOnly(), Operator.Add);
+      return new DumbArithmeticDependency(children.AsReadOnly(), dep.@operator);
     }
 
-    private static IDependency GenerateValueTypeFromSoundthesizer(Dependency dep)
+    public static IDependency GenerateValueDependency(Dependency dep)
     {
+      if(dep.value == "")
+        throw new SoundthesizerFileFormatException("Cannot create value dependency without a value set.");
+
       if(dep.refpoint.Count == 0)
         throw new SoundthesizerFileFormatException("A Dependency with the 'value' attribute set must contain at least one refpoint.");
 
@@ -62,11 +67,11 @@ namespace SoundthesizerConverterBackend.DumbTypes
       return new DumbValueDependency(refpoints, InputType.Bla);
     }
 
-    public static IDependency GenerateFromFile(Dependency dep, string dependencyName)
+    public static IDependency Generate(Dependency dep, string dependencyName)
     {
       try
       {
-        return GenerateFromSoundthesizer(dep);
+        return Generate(dep);
       }
       catch (SoundthesizerFileFormatException e)
       {
