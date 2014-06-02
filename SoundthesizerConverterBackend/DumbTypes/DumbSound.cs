@@ -1,4 +1,4 @@
-﻿namespace SoundthesizerConverterBackend
+﻿namespace SoundthesizerConverterBackend.DumbTypes
 {
   public class DumbSound : ISound
   {

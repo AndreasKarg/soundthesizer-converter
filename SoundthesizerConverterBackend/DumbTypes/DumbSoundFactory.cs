@@ -1,6 +1,6 @@
 ﻿using SoundthesizerConverterBackend.Xml;
 
-namespace SoundthesizerConverterBackend
+namespace SoundthesizerConverterBackend.DumbTypes
 {
   public static class DumbSoundFactory
   {

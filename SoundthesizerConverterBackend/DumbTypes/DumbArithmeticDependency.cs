@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SoundthesizerConverterBackend
+namespace SoundthesizerConverterBackend.DumbTypes
 {
   public class DumbArithmeticDependency : IArithmeticDependency, ITriggerDependency
   {

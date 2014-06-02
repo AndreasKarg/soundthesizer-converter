@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 
-namespace SoundthesizerConverterBackend
+namespace SoundthesizerConverterBackend.DumbTypes
 {
   public class DumbValueDependency : IValueDependency, ITriggerDependency
   {
