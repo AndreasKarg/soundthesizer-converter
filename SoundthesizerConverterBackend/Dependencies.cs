@@ -45,7 +45,7 @@ namespace SoundthesizerConverterBackend
 
   public enum TriggerDirection
   {
-    [XmlEnum(Name = "add")]
+    [XmlEnum(Name = "up")]
     Up,
     [XmlEnum(Name = "down")]
     Down,

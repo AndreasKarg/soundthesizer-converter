@@ -16,34 +16,21 @@ namespace SoundthesizerConverterBackend.Xml
   using System.Text;
   using System.Collections.Generic;
 
-
-  public partial class soundset
+  [XmlRoot("soundset")]
+  public partial class Soundset
   {
-
-    private List<soundsetSound> _sounds;
-
     private static System.Xml.Serialization.XmlSerializer serializer;
 
-    public soundset()
+    public Soundset()
     {
-      this._sounds = new List<soundsetSound>();
+      Sounds = new List<Sound>();
     }
 
     [XmlElement("sound")]
-    public List<soundsetSound> Sounds
-    {
-      get
-      {
-        return this._sounds;
-      }
-      set
-      {
-        this._sounds = value;
-      }
-    }
+    public List<Sound> Sounds { get; set; }
 
-    [XmlAttribute]
-    public string name { get; set; }
+    [XmlAttribute("name")]
+    public string Name { get; set; }
 
     private static System.Xml.Serialization.XmlSerializer Serializer
     {
@@ -51,7 +38,7 @@ namespace SoundthesizerConverterBackend.Xml
       {
         if ((serializer == null))
         {
-          serializer = new System.Xml.Serialization.XmlSerializer(typeof(soundset));
+          serializer = new System.Xml.Serialization.XmlSerializer(typeof(Soundset));
         }
         return serializer;
       }
@@ -94,10 +81,10 @@ namespace SoundthesizerConverterBackend.Xml
     /// <param name="obj">Output soundset object</param>
     /// <param name="exception">output Exception value if deserialize failed</param>
     /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-    public static bool Deserialize(string xml, out soundset obj, out System.Exception exception)
+    public static bool Deserialize(string xml, out Soundset obj, out System.Exception exception)
     {
       exception = null;
-      obj = default(soundset);
+      obj = default(Soundset);
       try
       {
         obj = Deserialize(xml);
@@ -110,19 +97,19 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
-    public static bool Deserialize(string xml, out soundset obj)
+    public static bool Deserialize(string xml, out Soundset obj)
     {
       System.Exception exception = null;
       return Deserialize(xml, out obj, out exception);
     }
 
-    public static soundset Deserialize(string xml)
+    public static Soundset Deserialize(string xml)
     {
       System.IO.StringReader stringReader = null;
       try
       {
         stringReader = new System.IO.StringReader(xml);
-        return ((soundset)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+        return ((Soundset)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
       }
       finally
       {
@@ -181,10 +168,10 @@ namespace SoundthesizerConverterBackend.Xml
     /// <param name="obj">Output soundset object</param>
     /// <param name="exception">output Exception value if deserialize failed</param>
     /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-    public static bool LoadFromFile(string fileName, out soundset obj, out System.Exception exception)
+    public static bool LoadFromFile(string fileName, out Soundset obj, out System.Exception exception)
     {
       exception = null;
-      obj = default(soundset);
+      obj = default(Soundset);
       try
       {
         obj = LoadFromFile(fileName);
@@ -197,13 +184,13 @@ namespace SoundthesizerConverterBackend.Xml
       }
     }
 
-    public static bool LoadFromFile(string fileName, out soundset obj)
+    public static bool LoadFromFile(string fileName, out Soundset obj)
     {
       System.Exception exception = null;
       return LoadFromFile(fileName, out obj, out exception);
     }
 
-    public static soundset LoadFromFile(string fileName)
+    public static Soundset LoadFromFile(string fileName)
     {
       System.IO.FileStream file = null;
       System.IO.StreamReader sr = null;
@@ -231,265 +218,83 @@ namespace SoundthesizerConverterBackend.Xml
     #endregion
   }
 
-  public partial class soundsetSound
+  public partial class Sound
   {
-    private soundsetSoundFile fileField;
-
-    private Dependency volumeField;
-
-    private Dependency panField;
-
-    private Dependency frequencyField;
-
-    private trigger_dependency triggerField;
-
-    private string nameField;
-
-    private bool loopedField;
-
-    public soundsetSound()
+    public Sound()
     {
-      this.triggerField = new trigger_dependency();
-      this.frequencyField = new Dependency();
-      this.panField = new Dependency();
-      this.volumeField = new Dependency();
-      this.fileField = new soundsetSoundFile();
-      this.loopedField = true;
+      Looped = true;
+      Trigger = new TriggerDependency();
+      Frequency = new Dependency();
+      Pan = new Dependency();
+      Volume = new Dependency();
+      File = new FileElement();
     }
 
-    [XmlElement]
-    public soundsetSoundFile file
-    {
-      get
-      {
-        return this.fileField;
-      }
-      set
-      {
-        this.fileField = value;
-      }
-    }
+    [XmlElement("file")]
+    public FileElement File { get; set; }
 
-    [XmlElement(IsNullable = true)]
-    public Dependency volume
-    {
-      get
-      {
-        return this.volumeField;
-      }
-      set
-      {
-        this.volumeField = value;
-      }
-    }
+    [XmlElement("volume")]
+    public Dependency Volume { get; set; }
 
-    [XmlElement(IsNullable = true)]
-    public Dependency pan
-    {
-      get
-      {
-        return this.panField;
-      }
-      set
-      {
-        this.panField = value;
-      }
-    }
+    [XmlElement("pan")]
+    public Dependency Pan { get; set; }
 
-    [XmlElement(IsNullable = true)]
-    public Dependency frequency
-    {
-      get
-      {
-        return this.frequencyField;
-      }
-      set
-      {
-        this.frequencyField = value;
-      }
-    }
+    [XmlElement("frequency")]
+    public Dependency Frequency { get; set; }
 
-    [XmlElement(IsNullable = false)]
-    public trigger_dependency trigger
-    {
-      get
-      {
-        return this.triggerField;
-      }
-      set
-      {
-        this.triggerField = value;
-      }
-    }
+    [XmlElement("trigger")]
+    public TriggerDependency Trigger { get; set; }
 
-    [XmlAttribute]
-    public string name
-    {
-      get
-      {
-        return this.nameField;
-      }
-      set
-      {
-        this.nameField = value;
-      }
-    }
+    [XmlAttribute("name")]
+    public string Name { get; set; }
 
-    [XmlAttribute, System.ComponentModel.DefaultValueAttribute(true)]
-    public bool looped
-    {
-      get
-      {
-        return this.loopedField;
-      }
-      set
-      {
-        this.loopedField = value;
-      }
-    }
+    [XmlAttribute("looped"), DefaultValue(true)]
+    public bool Looped { get; set; }
   }
 
-  public partial class soundsetSoundFile
+  public partial class FileElement
   {
-
-    private string nameField;
-
-    [XmlAttribute]
-    public string name
-    {
-      get
-      {
-        return this.nameField;
-      }
-      set
-      {
-        this.nameField = value;
-      }
-    }
+    [XmlAttribute("name")]
+    public string Name { get; set; }
   }
 
-  [System.Xml.Serialization.XmlIncludeAttribute(typeof(trigger_dependency))]
+  [System.Xml.Serialization.XmlIncludeAttribute(typeof(TriggerDependency))]
   public partial class Dependency
   {
-
-    private List<dependencyRefpoint> refpointField;
-
-    private List<Dependency> _dependencyField;
-
-    private string valueField;
-
-    private Operator operatorField;
-
-    private bool operatorFieldSpecified;
-
     public Dependency()
     {
-      this._dependencyField = new List<Dependency>();
-      this.refpointField = new List<dependencyRefpoint>();
+      Dependencies = new List<Dependency>();
+      Refpoints = new List<Refpoint>();
     }
 
-    [XmlElement]
-    public List<dependencyRefpoint> refpoint
-    {
-      get
-      {
-        return this.refpointField;
-      }
-      set
-      {
-        this.refpointField = value;
-      }
-    }
+    [XmlElement("refpoint")]
+    public List<Refpoint> Refpoints { get; set; }
 
-    [XmlElement]
-    public List<Dependency> dependency
-    {
-      get
-      {
-        return this._dependencyField;
-      }
-      set
-      {
-        this._dependencyField = value;
-      }
-    }
+    [XmlElement("dependency")]
+    public List<Dependency> Dependencies { get; set; }
 
-    [XmlAttribute]
-    public string value
-    {
-      get
-      {
-        return this.valueField;
-      }
-      set
-      {
-        this.valueField = value;
-      }
-    }
+    [XmlAttribute("value")]
+    public string Value { get; set; }
 
     [XmlAttribute("operator")]
-    public Operator @operator
-    {
-      get
-      {
-        return this.operatorField;
-      }
-      set
-      {
-        this.operatorField = value;
-      }
-    }
+    public Operator Operator { get; set; }
 
-    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    public bool operatorSpecified
-    {
-      get
-      {
-        return this.operatorFieldSpecified;
-      }
-      set
-      {
-        this.operatorFieldSpecified = value;
-      }
-    }
+    [XmlIgnore]
+    public bool OperatorSpecified { get; set; }
   }
 
-  public partial class dependencyRefpoint
+  public partial class Refpoint
   {
+    [XmlAttribute("x")]
+    public float X { get; set; }
 
-    private float xField;
-
-    private float yField;
-
-    [XmlAttribute]
-    public float x
-    {
-      get
-      {
-        return this.xField;
-      }
-      set
-      {
-        this.xField = value;
-      }
-    }
-
-    [XmlAttribute]
-    public float y
-    {
-      get
-      {
-        return this.yField;
-      }
-      set
-      {
-        this.yField = value;
-      }
-    }
+    [XmlAttribute("y")]
+    public float Y { get; set; }
   }
 
-  public partial class trigger_dependency : Dependency
+  public partial class TriggerDependency : Dependency
   {
-    public TriggerDirection direction { get; set; }
+    [XmlAttribute("direction")]
+    public TriggerDirection Direction { get; set; }
   }
 }

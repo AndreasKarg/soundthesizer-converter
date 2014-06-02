@@ -12,37 +12,37 @@ namespace SoundthesizerConverterBackend.DumbTypes
       if (dep == null)
         return null;
 
-      if (dep.value == "none")
+      if (dep.Value == "none")
         return null;
 
-      if (dep.operatorSpecified && (dep.value != null))
+      if (dep.OperatorSpecified && (dep.Value != null))
         throw new SoundthesizerFileFormatException("Operator and Value must not be defined for the same Dependency.");
 
       //Hack: As the deserializer will always create an empty object even when the respective element is absent in the source file, assume an empty dependency to be absent.
-      if (!dep.operatorSpecified && (dep.value == null) && (dep.refpoint.Count == 0) && (dep.dependency.Count == 0))
+      if (!dep.OperatorSpecified && (dep.Value == null) && (dep.Refpoints.Count == 0) && (dep.Dependencies.Count == 0))
         return null;
 
-      if (!dep.operatorSpecified && (dep.value == null))
+      if (!dep.OperatorSpecified && (dep.Value == null))
         throw new SoundthesizerFileFormatException("Either Operator or Value must be defined for a Dependency.");
 
-      return dep.value != null ? GenerateValueDependency(dep) : GenerateArithmeticDependency(dep);
+      return dep.Value != null ? GenerateValueDependency(dep) : GenerateArithmeticDependency(dep);
     }
 
     public static IDependency GenerateArithmeticDependency(Dependency dep)
     {
-      if(!dep.operatorSpecified)
+      if(!dep.OperatorSpecified)
         throw new SoundthesizerFileFormatException("Cannot create arithmetic dependency without 'operator' attribute.");
 
-      if(dep.dependency.Count == 0)
+      if(dep.Dependencies.Count == 0)
         throw new SoundthesizerFileFormatException("A Dependency with the 'operator' attribute set must contain at least one child Dependency.");
 
       var children = new List<IDependency>();
 
-      for (int i = 0; i < dep.dependency.Count; i++)
+      for (int i = 0; i < dep.Dependencies.Count; i++)
       {
         try
         {
-          children.Add(Generate(dep.dependency[i]));
+          children.Add(Generate(dep.Dependencies[i]));
         }
         catch (SoundthesizerFileFormatException e)
         {
@@ -50,18 +50,18 @@ namespace SoundthesizerConverterBackend.DumbTypes
         }
       }
 
-      return new DumbArithmeticDependency(children.AsReadOnly(), dep.@operator);
+      return new DumbArithmeticDependency(children.AsReadOnly(), dep.Operator);
     }
 
     public static IDependency GenerateValueDependency(Dependency dep)
     {
-      if(dep.value == "")
+      if(dep.Value == "")
         throw new SoundthesizerFileFormatException("Cannot create value dependency without a value set.");
 
-      if(dep.refpoint.Count == 0)
+      if(dep.Refpoints.Count == 0)
         throw new SoundthesizerFileFormatException("A Dependency with the 'value' attribute set must contain at least one refpoint.");
 
-      var refpoints = dep.refpoint.Select(x => new DoublePoint(x.x, x.y)).ToList().AsReadOnly();
+      var refpoints = dep.Refpoints.Select(x => new DoublePoint(x.X, x.Y)).ToList().AsReadOnly();
 
       //TODO: Actually convert Value type to enum
       return new DumbValueDependency(refpoints, InputType.Bla);

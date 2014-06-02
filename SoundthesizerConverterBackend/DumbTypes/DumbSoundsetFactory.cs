@@ -8,11 +8,11 @@ namespace SoundthesizerConverterBackend.DumbTypes
   {
     public static DumbSoundSet GenerateFromSoundthesizer(string filename)
     {
-      var soundSet = soundset.LoadFromFile(filename);
+      var soundSet = Soundset.LoadFromFile(filename);
 
       var sounds = soundSet.Sounds.Select(DumbSoundFactory.GenerateFromSoundthesizer).ToList().AsReadOnly();
 
-      return new DumbSoundSet(sounds, soundSet.name);
+      return new DumbSoundSet(sounds, soundSet.Name);
     }
   }
 
