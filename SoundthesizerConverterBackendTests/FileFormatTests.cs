@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SoundthesizerConverterBackend;
@@ -26,6 +27,13 @@ namespace SoundthesizerConverterBackendTests
       var result = soundset.LoadFromFile("Test Files\\EmptyTestFile.xml");
 
       Assert.AreEqual("BR 423", result.name);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(InvalidOperationException), "The value 'FAIL' for the 'operator' attribute in the test file was inappropriately allowed.")]
+    public void LoadEnumTestFile()
+    {
+      soundset.LoadFromFile("Test Files\\EnumTestFile.xml");
     }
 
     [TestMethod]
