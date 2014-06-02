@@ -2,15 +2,14 @@
 
 namespace SoundthesizerConverterBackend.DumbTypes
 {
-  public class DumbValueDependency : IValueDependency, ITriggerDependency
+  public class DumbValueDependency : IValueDependency
   {
     private readonly IReadOnlyCollection<DoublePoint> _refPoints;
 
-    public DumbValueDependency(IReadOnlyCollection<DoublePoint> refPoints, InputType inputType, TriggerDirection direction = TriggerDirection.Both)
+    public DumbValueDependency(IReadOnlyCollection<DoublePoint> refPoints, InputType inputType)
     {
       InputType = inputType;
       _refPoints = refPoints;
-      Direction = direction;
     }
 
     public IReadOnlyCollection<DoublePoint> RefPoints
@@ -19,6 +18,5 @@ namespace SoundthesizerConverterBackend.DumbTypes
     }
 
     public InputType InputType { get; private set; }
-    public TriggerDirection Direction { get; private set; }
   }
 }

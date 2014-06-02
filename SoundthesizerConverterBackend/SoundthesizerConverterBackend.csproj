@@ -41,14 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoublePoint.cs" />
+    <Compile Include="DumbTypes\DumbArithmeticDependencyFactory.cs" />
     <Compile Include="DumbTypes\DumbSoundSet.cs" />
     <Compile Include="DumbTypes\DumbArithmeticDependency.cs" />
     <Compile Include="DumbTypes\DumbDependencyFactory.cs" />
     <Compile Include="DumbTypes\DumbSound.cs" />
     <Compile Include="DumbTypes\DumbSoundFactory.cs" />
+    <Compile Include="DumbTypes\DumbTriggerDependency.cs" />
     <Compile Include="DumbTypes\DumbValueDependency.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Dependencies.cs" />
+    <Compile Include="DumbTypes\DumbValueDependencyFactory.cs" />
     <Compile Include="InputType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sound.cs" />

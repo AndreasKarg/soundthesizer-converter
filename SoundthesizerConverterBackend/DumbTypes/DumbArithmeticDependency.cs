@@ -2,14 +2,13 @@
 
 namespace SoundthesizerConverterBackend.DumbTypes
 {
-  public class DumbArithmeticDependency : IArithmeticDependency, ITriggerDependency
+  public class DumbArithmeticDependency : IArithmeticDependency
   {
     private readonly IReadOnlyCollection<IDependency> _operands;
 
-    public DumbArithmeticDependency(IReadOnlyCollection<IDependency> operands, Operator @operator, TriggerDirection direction = TriggerDirection.Both)
+    public DumbArithmeticDependency(IReadOnlyCollection<IDependency> operands, Operator @operator)
     {
       _operands = operands;
-      Direction = direction;
       Operator = @operator;
     }
 
@@ -19,6 +18,5 @@ namespace SoundthesizerConverterBackend.DumbTypes
     }
 
     public Operator Operator { get; private set; }
-    public TriggerDirection Direction { get; private set; }
   }
 }
