@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SoundthesizerConverterBackend;
 using SoundthesizerConverterBackend.Xml;
@@ -30,6 +31,9 @@ namespace SoundthesizerConverterBackendTests
     public void GenerateDumbSoundSetFromBR423()
     {
       var soundSet = DumbSoundsetFactory.GenerateSoundsetFromFile("Test Files\\BR423.xml");
+      Assert.AreEqual("BR 423", soundSet.Name);
+      Assert.AreEqual(9, soundSet.Sounds.Count);
+      Assert.IsTrue(Math.Abs(71 - ((soundSet.Sounds.ElementAt(1).Volume as IArithmeticDependency).Operands.ElementAt(1) as IValueDependency).RefPoints.ElementAt(4).X) < 1);
     }
   }
 }
